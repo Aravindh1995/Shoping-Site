@@ -1,0 +1,14 @@
+
+.model-header-close{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form_pad{
+    padding: 15px;
+    .common-forms{
+        overflow-y: auto;
+        max-height: 425px;
+    }
+}

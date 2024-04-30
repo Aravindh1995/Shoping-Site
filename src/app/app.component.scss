@@ -1,0 +1,11 @@
+.layout{
+    .wd-3{
+        width: 100%;
+        max-width: 210px;
+    }
+    .wd-9{
+        width: 100%;
+        max-width: calc(100% - 210px);
+        padding: 15px;
+    }
+}

@@ -1,0 +1,11 @@
+<div class="h-100 sidemenu">
+    <ul class="navbar">
+        @for (item of sideMenu; track item.id) {
+            <li class="navbar-list">
+                <a class="navbar-list-link" [routerLink]="item.routes" routerLinkActive="active-route" >{{ item.name }}</a>
+            </li>
+          } @empty {
+            <li>Empty list of users</li>
+          }
+    </ul>
+</div>
