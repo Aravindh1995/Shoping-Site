@@ -19,5 +19,7 @@ export class ShopModel{
     'location': string;
     'shop_type': ShopTypeModel;
     'ph_no': string;
+    'ph_code': string;
     '_id': string;
+    'disabled': boolean;
 }

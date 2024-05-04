@@ -1,86 +1,138 @@
-@if (open){
-<div class="model-popup ">
+@if (showForm){
 
-  <div class="model-popover-comp card">
-
-    <div class="card-header model-header-close">
-      <span>Add Shop</span>
-      <span class="text-right">
-        <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
-      </span>
-    </div>
-
-    <form class="form_pad" [formGroup]="createShopForm" (ngSubmit)="submitForm()">
+<nz-modal [nzStyle]="{ top: '20px' }" [(nzVisible)]="showForm" [nzTitle]="selectedObject ? 'Update Shop' : 'Add Shop'"
+  nzOkText="Ok" nzCancelText="Cancel" (nzOnOk)="submitForm()" (nzOnCancel)="close(1)" nzWidth="700px" [nzBodyStyle]="{ 'height': '400px', 'overflow': 'auto' }">
+  <div *nzModalContent>
+      <form nz-form [formGroup]="createShopForm" (ngSubmit)="submitForm()">
 
       <div class="common-forms">
-        <div class="my-3">
-          <label for="" class="form-label">Shop Name</label>
-          <input type="text" class="form-control" formControlName="shop_name" />
+
+        <div class="mb-3">
+          <nz-form-label nzRequired>Shop Name</nz-form-label>
+          <nz-form-control nzErrorTip="The input is not valid E-mail!">
+            <input nz-input formControlName="shop_name" id="shop_name" />
+          </nz-form-control>
         </div>
+
 
         <div class="mb-3">
           <div class="row mx-auto">
-            <div class="col-6 px-1">
-              <label for="" class="form-label">First Name</label>
-              <input type="text" class="form-control" formControlName="first_name" />
+
+            <div class="mb-3">
+              <nz-form-label  >First Name</nz-form-label>
+              <nz-form-control nzErrorTip="The input is not valid First Name!">
+                <input nz-input formControlName="first_name" id="first_name" />
+              </nz-form-control>
             </div>
 
-            <div class="col-6 px-1">
-              <label for="" class="form-label">Last Name</label>
-              <input type="text" class="form-control" formControlName="last_name" />
+            <div class="mb-3">
+              <nz-form-label  >Last Name</nz-form-label>
+              <nz-form-control nzErrorTip="The input is not valid Last Name!">
+                <input nz-input formControlName="last_name" id="last_name" />
+              </nz-form-control>
             </div>
 
           </div>
         </div>
 
         <div class="mb-3">
-          <label for="" class="form-label">Owner Age</label>
-          <input type="number" class="form-control" formControlName="age" />
-        </div>
-
-        
-        <div class="mb-3">
-          <label for="" class="form-label">Email</label>
-          <input type="email" class="form-control" formControlName="email" />
+          <nz-form-label >Owner Age</nz-form-label>
+          <nz-form-control nzErrorTip="The input is not valid age!">
+            <input nz-input formControlName="age" id="age" />
+          </nz-form-control>
         </div>
 
         <div class="mb-3">
-          <label for="" class="form-label">Shop Address</label>
-          <input type="text" class="form-control" formControlName="location" />
+          <nz-form-label  >E-mail</nz-form-label>
+          <nz-form-control nzErrorTip="The input is not valid email!">
+            <input nz-input formControlName="email" id="email" />
+          </nz-form-control>
         </div>
 
         <div class="mb-3">
-          <label for="" class="form-label">Type of Shop</label>
-          <select class="form-select" aria-label="Default select example" formControlName="shop_type">
-            <option [value]="item.type_Id" *ngFor="let item of shoptypeList">{{item.type}}</option>
-          </select>
+          <nz-form-label  >Location</nz-form-label>
+          <nz-form-control nzErrorTip="The input is not valid location!">
+            <input nz-input formControlName="location" id="location" />
+          </nz-form-control>
         </div>
 
         <div class="mb-3">
-          <label for="" class="form-label">Phone Number</label>
-          <div class="input-group mb-3">
-            <select class="form-select" style="width: 15%;" [(ngModel)]="countryCode" [ngModelOptions]="{standalone: true}" >
-              <option selected>+91</option>
-              <option [value]="item.dial_code" *ngFor="let item of countryList">{{item.dial_code}}</option>
-            </select>
-            <input type="number" class="form-control" style="width: 85%;" formControlName="ph_no" />
+          <nz-form-label >Type of Shop</nz-form-label>
+          <nz-form-control>
+            <nz-select formControlName="shop_type" class="phone-select">
+              <nz-option *ngFor="let item of shoptypeList; let i = index" [nzLabel]="item.type" [nzValue]="item.type_Id"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </div>
+
+        <div class="mb-3">
+          <nz-form-label >Phone Number</nz-form-label>
+          <div nz-row>
+            <div nz-col nzFlex="90px">
+              <nz-select class="phone-select" class="w-100" formControlName="ph_code">
+                <nz-option *ngFor="let item of countryList" [nzValue]="item.dial_code" nzPlaceHolder="+91" [nzLabel]="item.dial_code"></nz-option>
+              </nz-select>
+            </div>
+            <div nz-col nzFlex="auto">
+              <input formControlName="ph_no" id="'ph_no'" nz-input />
+              <!-- <input formControlName="ph_no" id="'ph_no'" nz-input 
+              #inputElement
+              nz-input
+              [ngModel]="enterNumber"
+              placeholder="Enter your phone number"
+              (ngModelChange)="onChange($event)"
+               /> -->
+            </div>
           </div>
+
         </div>
 
-      </div>
-
-      <div class="text-center">
-        <button type="submit" class="btn btn-primary">Submit</button>
       </div>
 
     </form>
-
-    {{selectedObject | json}}
-
-
   </div>
+</nz-modal>
 
-</div>
+
+}
+
+@if(deleteOpen?.model){
+
+  <nz-modal [(nzVisible)]="deleteOpen" nzTitle="Delete Selected Shop" (nzOnCancel)="close(2)" (nzOnOk)="deleteShop()">
+    <ng-container *nzModalContent>
+      <div class="modal-body p-3">
+        <div class="py-3 px-2">
+          Do you want to delete this shop?
+        </div>
+      </div>
+    </ng-container>
+  </nz-modal>
+
+  <!-- <div class="model-popup ">
+
+    <div class="model-popover-comp card" style="width: 30%;">
+
+      <div class="card-header model-header-close">
+        <span class="modal-heading">Delete Selected Shop</span>
+        <span class="text-right">
+          <button type="button" class="btn-close" aria-label="Close" (click)="close(2)"></button>
+        </span>
+      </div>
+
+      <div class="modal-body p-3">
+        <div class="py-3 px-2">
+          Do you want to delete this shop?
+        </div>
+      </div>
+
+      <div class="modal-footer p-2 border-top">
+        <button type="button" class="btn btn-secondary" (click)="close(2)" >No</button>
+        <button type="button" class="btn btn-primary mx-2" (click)="deleteShop()">Yes</button>
+      </div>
+
+    </div>
+
+  </div> -->
 }
 
 

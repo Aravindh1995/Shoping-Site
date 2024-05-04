@@ -1,0 +1,20 @@
+<nz-layout style="height: 100vh;">
+    <nz-sider nzCollapsible nzWidth="200px">
+      <div class="logo"></div>
+      <app-side-bar></app-side-bar>
+    </nz-sider>
+    <nz-layout>
+      <nz-header>
+        <app-top-bar></app-top-bar>
+      </nz-header>
+      <nz-content>
+        <nz-breadcrumb>
+          <nz-breadcrumb-item *ngFor="let item of breadcrumbItems">{{item}}</nz-breadcrumb-item>
+        </nz-breadcrumb>
+        <div class="inner-content">
+            <router-outlet></router-outlet>
+        </div>
+      </nz-content>
+      <nz-footer>Shop Website ©2024 Implement By Aravindh</nz-footer>
+    </nz-layout>
+  </nz-layout>

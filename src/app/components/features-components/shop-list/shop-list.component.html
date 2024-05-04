@@ -1,0 +1,50 @@
+<section class="main_section">
+  <nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand">Shop List</a>
+      <button class="btn btn-outline-success" type="submit" (click)="showModel()">+</button>
+    </div>
+  </nav>
+  <div class="table-responsive table-responsive-sm">
+
+    <nz-table #filterTable [nzData]="listShops">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Shop Name</th>
+          <th>Email</th>
+          <th>Address</th>
+          <th>Ph.No</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let data of filterTable.data">
+          <td>{{data.first_name}}</td>
+          <td>{{data.last_name}}</td>
+          <td>{{data.shop_name}}</td>
+          <td>{{data.email}}</td>
+          <td>{{data.location}}</td>
+          <td>{{data.ph_code}}-{{data.ph_no}}</td>
+          <td>
+            <span class="action_icons">
+              <img src="../../../../assets/imgs/pen.png" alt="" (click)="showModel(data)" />
+              <img src="../../../../assets/imgs/bin.png" alt="" (click)="deleteSelectedId(data._id)" />
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+
+  </div>
+
+  <!-- model file -->
+  <app-model [showForm]="modelShow" [deleteOpen]="deleteModel" [selectedObject]="selectedData"
+    (closePop)="closePop($event)"></app-model>
+</section>
+
+<section class="loader">
+  <app-loader [loader]="triggerLoader"></app-loader>
+</section>

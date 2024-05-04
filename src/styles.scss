@@ -1,23 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
 
 
-@import "./assets/scss/main.scss";
-@import "./assets/scss/bootstrap.css";
+// @import "./assets/scss/main.scss";
+// @import "./assets/scss/bootstrap.css";
 
-html, body {
+@import "./assets/scss/ng-zorro.css";
+
+html,
+body {
     height: 100%;
 }
 
-body{
+body {
     padding: 0;
     margin: 0;
 }
 
-*, *:before, *:after{
+*,
+*:before,
+*:after {
     box-sizing: border-box;
 }
 
-.model-popup{ // -------------- pop up scss ------------ //
+.model-popup {
+    // -------------- pop up scss ------------ //
     position: absolute;
     height: calc(100% - -40px);
     width: 100%;
@@ -27,7 +33,8 @@ body{
     top: 0;
     bottom: 0;
     margin: 0 auto;
-    .model-popover-comp{
+
+    .model-popover-comp {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -36,4 +43,18 @@ body{
         // padding: 15px;
         // background: #fff;
     }
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.poetsen-one-regular {
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.poetsen-one-regular-20{
+    font-size: 20px;
 }

@@ -4,16 +4,29 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
-import { CrosInterceptor } from './shared-files/auth-guard/cros.interceptor';
+import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
+import { TitleCasePipe, registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en';
+registerLocaleData(en);
+import { provideNzI18n, en_US } from 'ng-zorro-antd/i18n';
+import { AuthInterceptor } from './components/authendication-components/auth-interceptor';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { ErrorInterceptor } from './components/authendication-components/error.interceptor';
 
 export const appConfig: ApplicationConfig = {
 
   providers: [
+    // TitleCasePipe,
+    provideNzI18n(en_US),
     provideHttpClient(withFetch()),
     provideRouter(routes),
-    provideClientHydration(), 
+    provideAnimations(),
+    provideAnimationsAsync(),
+    importProvidersFrom(TitleCasePipe),
+    provideClientHydration(),
     importProvidersFrom(HttpClientModule),
-    { provide: HTTP_INTERCEPTORS, useClass: CrosInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ]
 
 };

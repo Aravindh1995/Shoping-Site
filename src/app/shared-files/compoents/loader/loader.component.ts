@@ -1,5 +1,6 @@
 import { NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-loader',
@@ -8,8 +9,17 @@ import { Component } from '@angular/core';
   templateUrl: './loader.component.html',
   styleUrl: './loader.component.scss'
 })
-export class LoaderComponent {
+export class LoaderComponent implements OnInit{
 
-  loader: boolean = false;
+  // loader: boolean = false;
+  @Input() loader: boolean = false;
+
+  constructor(private sharedService: SharedService) {}
+
+  ngOnInit() {
+    this.sharedService.data$.subscribe(data => {
+      this.loader = data
+    });
+  }
 
 }
